@@ -29,7 +29,7 @@ interface
 {$WARN UNSAFE_CODE OFF}
 
 uses
-  Winapi.Windows;
+  Windows;
 
 type
   // Helper classes to speed up rendering text formats for clipboard and drag'n drop transfers.

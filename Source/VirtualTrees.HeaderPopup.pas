@@ -66,8 +66,8 @@
 interface
 
 uses
-  System.Classes,
-  Vcl.Menus,
+  Classes,
+  Menus,
   VirtualTrees;
 
 type
@@ -107,7 +107,7 @@ type
 implementation
 
 uses
-  Winapi.Windows, System.Types;
+  Windows, Types;
 
 resourcestring
   sResizeColumnToFit = 'Size &Column to Fit';

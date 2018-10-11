@@ -8,8 +8,8 @@
 interface
 
 uses
-  Winapi.Windows, System.Classes, Winapi.ActiveX, System.Types, Winapi.oleacc,
-  VirtualTrees, VirtualTrees.AccessibilityFactory, Vcl.Controls;
+  Windows, Classes, ActiveX, Types, oleacc,
+  VirtualTrees, VirtualTrees.AccessibilityFactory, Controls;
 
 type
   TVirtualTreeAccessibility = class(TInterfacedObject, IDispatch, IAccessible)
@@ -99,7 +99,7 @@ type
 implementation
 
 uses
-  System.SysUtils, Vcl.Forms, System.Variants, System.Math;
+  SysUtils, Forms, Variants, Math;
 
 type
 

@@ -1,4 +1,4 @@
-﻿unit VirtualTrees.Utils;
+unit VirtualTrees.Utils;
 
 // The contents of this file are subject to the Mozilla Public License
 // Version 1.1 (the "License"); you may not use this file except in compliance
@@ -29,12 +29,12 @@ interface
 {$WARN UNSAFE_CODE OFF}
 
 uses
-  Winapi.Windows,
-  Winapi.ActiveX,
-  System.Types,
-  Vcl.Graphics,
-  Vcl.ImgList,
-  Vcl.Controls;
+  Windows,
+  ActiveX,
+  Types,
+  Graphics,
+  ImgList,
+  Controls;
 
 
 type
@@ -94,15 +94,22 @@ procedure ScaleImageList(const ImgList: TImageList; M, D: Integer);
 /// Returns True if the high contrast theme is anabled in the system settings, False otherwise.
 function IsHighContrastEnabled(): Boolean;
 
+type
+  TRectHelper = record helper for TRect
+  private
+    function GetWidth: Integer;
+  public
+    property Width: Integer read GetWidth;
+  end;
 
 implementation
 
 uses
-  Winapi.CommCtrl,
-  Winapi.ShlObj,
-  System.SysUtils,
-  System.StrUtils,
-  System.Math;
+  CommCtrl,
+  ShlObj,
+  SysUtils,
+  StrUtils,
+  Math;
 
 const
   WideLF = Char(#10);
@@ -227,7 +234,7 @@ begin
   Bounds.Right := Bounds.Left + 1;
   Bounds.Bottom := Bounds.Top + 1;
 
-  Winapi.Windows.DrawTextW(DC, PWideChar(S), Length(S), Bounds, DrawFormat or DT_CALCRECT);
+  Windows.DrawTextW(DC, PWideChar(S), Length(S), Bounds, DrawFormat or DT_CALCRECT);
 end;
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -1375,5 +1382,11 @@ begin
   Result := SystemParametersInfo(SPI_GETHIGHCONTRAST, 0, @l, 0) and ((l.dwFlags and HCF_HIGHCONTRASTON) <> 0);
 end;
 
+{ TRectHelper }
+
+function TRectHelper.GetWidth: Integer;
+begin
+  Result := Self.Right - Self.Left;
+end;
 
 end.

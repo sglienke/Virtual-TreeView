@@ -29,9 +29,9 @@ interface
 {$WARN UNSAFE_CAST OFF}
 
 uses
-  Winapi.Windows,
-  Winapi.ActiveX,
-  System.Classes,
+  Windows,
+  ActiveX,
+  Classes,
   VirtualTrees;
 
 type
@@ -39,6 +39,11 @@ type
     ID: Word;
     Description: string;
   end;
+
+{$if CompilerVersion = 22}
+const
+  CF_MAX = 18;
+{$ifend}
 
 var
   ClipboardDescriptions: array [1..CF_MAX - 1] of TClipboardFormatEntry = (
@@ -102,7 +107,7 @@ type
 implementation
 
 uses
-  System.SysUtils;
+  SysUtils;
 
 var
   _List: TList = nil;  //Note - not using class constructors as they are not supported on C++ Builder. See also issue #

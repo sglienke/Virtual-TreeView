@@ -1,12 +1,14 @@
-﻿unit VirtualTrees.Actions;
+unit VirtualTrees.Actions;
 
 interface
 
 uses
-  System.Classes,
-  System.Actions,
-  Vcl.Controls,
-  Vcl.ActnList,
+  Classes,
+{$if CompilerVersion > 22}
+  Actions,
+{$ifend}
+  Controls,
+  ActnList,
   VirtualTrees;
 
 type
@@ -114,8 +116,8 @@ procedure Register;
 implementation
 
 uses
-  WinApi.Windows,
-  Vcl.Forms;
+  Windows,
+  Forms;
 
 procedure Register;
 begin
@@ -247,7 +249,7 @@ begin
   fDesiredCheckState := csCheckedNormal;
   fToExecute := procedure(Sender: TBaseVirtualTree; Node: PVirtualNode; Data: Pointer; var Abort: Boolean)
                 begin
-                  if not Control.CheckState[Node].IsDisabled then
+                  if not CheckStateIsDisabled(Control.CheckState[Node]) then
                     Control.CheckState[Node] := fDesiredCheckState;
                 end;
 end;
